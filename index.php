@@ -26,32 +26,47 @@ $start_newline = strpos($input_string, "\n");
 echo "first newline position: " . $start_newline . "<br>";
 
 $position_newline_difference = ($start_position % $start_newline);
-echo "start/newline remainder: " . $position_newline_difference;
+echo "start/newline remainder: " . $position_newline_difference . "<br>";
 
 $second_position = strpos($input_string, "#", strpos($input_string, "#") + 1);
-echo "second marker position: " . $second_position;
+echo "second marker position: " . $second_position . "<br>";
+
+$second_position_newline_difference = ($second_position % $start_newline);
+echo "second start/newline remainder: " . $second_position_newline_difference . "<br>";
 
 $last_string = $input_string;
+$last_asterisk_position = $start_position + 1;
 
-for ($i = $start_position; $i < $second_position; $i++) {
-    if ($i % ($start_newline + 1) == ($position_newline_difference - 2) && $i != $start_position) {
-        $output_string = substr_replace($last_string, "*", $i, 1);
-        $last_string = $output_string;
-        $last_asterisk_position = $i;
-        echo "Last asterisk position: " . $last_asterisk_position;
-        echo $output_string . "<br>";
+// Should I go vertical?
+if ($second_position > $start_position - $position_newline_difference) {
+    for ($i = $start_position; $i < $second_position; $i++) {
+        if ($i % ($start_newline + 1) == ($position_newline_difference - 2) && $i != $start_position) {
+            $output_string = substr_replace($last_string, "*", $i, 1);
+            $last_string = $output_string;
+            $last_asterisk_position = $i;
+            echo "Last asterisk position: " . $last_asterisk_position;
+            echo $output_string . "<br>";
+        }
     }
 }
 
 echo "downward done!";
 
-for ($i = $last_asterisk_position; $i < $second_position; $i++) {
-    if ($i < $second_position) {
-        $output_string = substr_replace($last_string, "*", $i, 1);
-        $last_string = $output_string;
-        echo $output_string . "<br>";
-    }
-}
+// If asterisks are left of second marker after vertical sweep...
+//for ($i = $last_asterisk_position; $i < $second_position; $i++) {
+//    if ($i < $second_position) {
+//        $output_string = substr_replace($last_string, "*", $i, 1);
+//        $last_string = $output_string;
+//        echo $output_string . "<br>";
+//    }
+//}
+
+// If right...
+//for ($i = $second_position + 1; $i < $last_asterisk_position + $start_newline + 2; $i++) {
+//    $output_string = substr_replace($last_string, "*", $i, 1);
+//    $last_string = $output_string;
+//    echo $output_string . "<br>";
+//}
 
 $output_file = fopen("output.txt", "w");
 fwrite($output_file, $output_string);
