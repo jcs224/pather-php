@@ -52,21 +52,25 @@ if ($second_position > $start_position - $position_newline_difference) {
 
 echo "downward done!";
 
-// If asterisks are left of second marker after vertical sweep...
-for ($i = $last_asterisk_position; $i < $second_position; $i++) {
-    if ($i < $second_position) {
+// If left of top marker...
+if ($second_position > $last_asterisk_position + ($start_newline - $position_newline_difference)) {
+    for ($i = $second_position + 1; $i < $last_asterisk_position + $start_newline + 2; $i++) {
         $output_string = substr_replace($last_string, "*", $i, 1);
         $last_string = $output_string;
         echo $output_string . "<br>";
     }
-}
+} else {
 
-// If right...
-//for ($i = $second_position + 1; $i < $last_asterisk_position + $start_newline + 2; $i++) {
-//    $output_string = substr_replace($last_string, "*", $i, 1);
-//    $last_string = $output_string;
-//    echo $output_string . "<br>";
-//}
+// If right of top marker...
+
+    for ($i = $last_asterisk_position; $i < $second_position; $i++) {
+        if ($i < $second_position) {
+            $output_string = substr_replace($last_string, "*", $i, 1);
+            $last_string = $output_string;
+            echo $output_string . "<br>";
+        }
+    }
+}
 
 $output_file = fopen("output.txt", "w");
 fwrite($output_file, $output_string);
