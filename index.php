@@ -52,7 +52,7 @@ if ($second_position > $start_position - $position_newline_difference) {
 
 echo "downward done!";
 
-// If left of top marker...
+// If second marker is left of first marker...
 if ($second_position > $last_asterisk_position + ($start_newline - $position_newline_difference)) {
     for ($i = $second_position + 1; $i < $last_asterisk_position + $start_newline + 2; $i++) {
         $output_string = substr_replace($last_string, "*", $i, 1);
@@ -61,8 +61,7 @@ if ($second_position > $last_asterisk_position + ($start_newline - $position_new
     }
 } else {
 
-// If right of top marker...
-
+// If right of first marker...
     for ($i = $last_asterisk_position; $i < $second_position; $i++) {
         if ($i < $second_position) {
             $output_string = substr_replace($last_string, "*", $i, 1);
