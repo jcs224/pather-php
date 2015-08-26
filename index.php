@@ -53,13 +53,13 @@ if ($second_position > $start_position - $position_newline_difference) {
 echo "downward done!";
 
 // If asterisks are left of second marker after vertical sweep...
-//for ($i = $last_asterisk_position; $i < $second_position; $i++) {
-//    if ($i < $second_position) {
-//        $output_string = substr_replace($last_string, "*", $i, 1);
-//        $last_string = $output_string;
-//        echo $output_string . "<br>";
-//    }
-//}
+for ($i = $last_asterisk_position; $i < $second_position; $i++) {
+    if ($i < $second_position) {
+        $output_string = substr_replace($last_string, "*", $i, 1);
+        $last_string = $output_string;
+        echo $output_string . "<br>";
+    }
+}
 
 // If right...
 //for ($i = $second_position + 1; $i < $last_asterisk_position + $start_newline + 2; $i++) {
