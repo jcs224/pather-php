@@ -1,8 +1,8 @@
 <?php
 
 // Get the file and put its contents in a string
-$input_file = fopen("input.txt","r") or die("Unable to open file");
-$input_string = fread($input_file, filesize("input.txt"));
+$input_file = fopen($argv[1],"r") or die("Unable to open file");
+$input_string = fread($input_file, filesize($argv[1]));
 
 // Recursive function for getting marker positions. Found this nice gem by martijn. tweaked slightly:
 // http://www.php.net/manual/en/function.strpos.php#107678
@@ -67,7 +67,7 @@ for ($k = 0; $k < count($markers) - 1; $k++) {
 }
 
 // Save string to file and close
-$output_file = fopen("output.txt", "w");
+$output_file = fopen($argv[2], "w");
 fwrite($output_file, $output_string);
 fclose($output_file);
 fclose($input_file);
