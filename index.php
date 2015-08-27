@@ -35,7 +35,7 @@ $second_position_newline_difference = ($second_position % $start_newline);
 echo "second start/newline remainder: " . $second_position_newline_difference . "<br>";
 
 $last_string = $input_string;
-$last_asterisk_position = $start_position + 1;
+$last_asterisk_position = $start_position;
 
 // Should I go vertical?
 if ($second_position > $start_position - $position_newline_difference) {
@@ -62,7 +62,7 @@ if ($second_position > $last_asterisk_position + ($start_newline - $position_new
 } else {
 
 // If right of first marker...
-    for ($i = $last_asterisk_position; $i < $second_position; $i++) {
+    for ($i = $last_asterisk_position + 1; $i < $second_position; $i++) {
         if ($i < $second_position) {
             $output_string = substr_replace($last_string, "*", $i, 1);
             $last_string = $output_string;
