@@ -18,6 +18,7 @@ function strpos_recursive($haystack, $needle, $offset = 0, &$results = []) {
 
 // Get marker positions
 $markers = strpos_recursive($input_string, "#");
+$newline_interval = strpos($input_string, "\n"); // Frequency of newlines, mainly to determine vertical path
 
 // Iterate through the array of markers, and save the last path string before running the next loop
 for ($k = 0; $k < count($markers) - 1; $k++) {
@@ -25,7 +26,6 @@ for ($k = 0; $k < count($markers) - 1; $k++) {
     // Initialize variables
     $first_marker = $markers[$k];
     $second_marker = $markers[$k + 1];
-    $newline_interval = strpos($input_string, "\n"); // Frequency of newlines, mainly to determine vertical path
     $marker_newline_difference = ($first_marker % $newline_interval); // What "distance from the left" is the first marker?
 
     // If it's the first loop iteration, save the initial input string to the main string variable
